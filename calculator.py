@@ -1,7 +1,10 @@
-x = float(input(" x= "))
-y = float(input(" y= "))
+def main():
+    x = int(input("x="))
+    print("x square is", square(x))
 
-z= round(x + y)
 
-  
-print(z)
+
+def square(n):
+    return n * n
+
+main()
