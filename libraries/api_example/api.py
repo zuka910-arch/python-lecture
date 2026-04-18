@@ -1,11 +1,17 @@
+import sys
 import requests
 
 
 def main():
-    response = requests.get("https://api.artic.edu/api/v1/artworks/search")
-    print(response)
+    try:
+        response = requests.get(
+            "https://api.artic.edu/api/v1/artworks/search" , {"q": "van gogh"})
+    except requests.HTTPError:
+        print("An error occurred while making the request.")
+        sys.exit(1)
     content = response.json()
-    print(content)
-
+    for artwork in content["data"]:
+        print(f"{artwork['title']}")
+    
 
 main()
