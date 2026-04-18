@@ -2,7 +2,7 @@ import json
 import sys
 import requests
 
-if len(sys.argv) != 2:
+if len(sys.argv) == 2:
     sys.exit()
 
 response = requests.get("https://itunes.apple.com/search?entity=song&limit=200&term=" + sys.argv[1])
