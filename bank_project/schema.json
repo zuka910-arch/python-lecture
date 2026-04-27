@@ -3,8 +3,7 @@
         "password": "testpass123",
         "balance": 100.0,
         "transactions": [
-            {"type": "deposit",
-        
+            {"type": "deposit"
         
         }
         ]
