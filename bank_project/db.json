@@ -1,0 +1,9 @@
+{
+  "users": {
+    "alice": {
+      "passwprd": "Zukeksa123!",
+      "balance": 0.0,
+      "transactions": []
+    }
+  }
+}
