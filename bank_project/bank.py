@@ -28,22 +28,40 @@ def register():
     if not password:
         print("password cannot be empty")
         return
-    db["users"]["alice"] = {
-        "passwprd": password,
+    db["users"][username] = {
+        "password": password,
         "balance": 0.0,
         "transactions": [],
     }
     save_db(db)
     print(f"Account created for '{username}'")
+
+def login():
+    username = input("username: ").strip()
+    password = getpass("password: ")
+    db = load_db()
+    user = db["users"].get(username)
+    if user is None or user["password"] != password:
+        print("Invalid username or password")
+        return None
+    print(f"Welcome back, {username}")
+    return username
+
 def main():
     while True:
         print("\n=== simple bank ===")
         print("1. Register")
-        print("2. Quit")
+        print("2. Login")
+        print("3. Quit")
         choice = input("Choose an option: ").strip()
         if choice == "1":
             register()
+            
         elif choice == "2":
+            user = login()
+            if user:
+                print(f"(banking menu for '{user}' comming in the next lecture)")
+        elif choice == "3":
             print("Goodbye")
             return
         else:
