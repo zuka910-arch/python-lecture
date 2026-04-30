@@ -2,8 +2,29 @@
   "users": {
     "bob": {
       "password": "bob123",
-      "balance": 0.0,
-      "transactions": []
+      "balance": 602.5,
+      "transactions": [
+        {
+          "type": "deposit",
+          "amount": 250.0,
+          "at": "2026-04-30T17:49:05"
+        },
+        {
+          "type": "deposit",
+          "amount": 250.0,
+          "at": "2026-04-30T17:49:18"
+        },
+        {
+          "type": "deposit",
+          "amount": 100.0,
+          "at": "2026-04-30T17:51:22"
+        },
+        {
+          "type": "deposit",
+          "amount": 2.5,
+          "at": "2026-04-30T17:52:21"
+        }
+      ]
     }
   }
 }
