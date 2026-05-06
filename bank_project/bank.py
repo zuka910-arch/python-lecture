@@ -115,7 +115,7 @@ def transfer(username):
     if amount is None:
         return
     sender = db["users"][username]
-    if sender["balance"] < amount:
+    if sender["balancgite"] < amount:
         print("Insufficient found.")
         return
     receiver = db["users"][recipient]
