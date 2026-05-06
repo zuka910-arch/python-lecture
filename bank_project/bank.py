@@ -87,19 +87,67 @@ def deposit(username):
     save_db(db)
     print(f"Deposited ${amount:.2f}. new balance: ${user["balance"]:.2f}")
     
+def withdraw(username):
+    amount = read_amount("Amount to withdraw : $")
+    if amount is None:
+        return 
+    db = load_db()
+    user = db["users"][username]
+    if user["balance"] < amount:
+        print("Isufficient funds.")
+        return
+    user["balance"] -= amount
+    add_transaction(user, {"type": "withdraw", "amount": amount})
+    save_db(db)
+    print(f"withdraw ${amount:.2f}. New balance: #{user['balance']}")
+
+
+def transfer(username):
+    recipient = input("recipient username: ").strip()
+    db = load_db()
+    if recipient not in db["users"]:
+        print("That use does not exist.")
+        return
+    if recipient == username:
+        print("You cannot transfer to yourself.")
+        return
+    amount = read_amount("Amount to transfer: $")
+    if amount is None:
+        return
+    sender = db["users"][username]
+    if sender["balance"] < amount:
+        print("Insufficient found.")
+        return
+    receiver = db["users"][recipient]
+    sender["balance"] -= amount
+    receiver["balance"] += amount
+    add_transaction(sender, {"type": "transfer_out", "amount": amount, "to": recipient})
+    add_transaction(receiver, {"type": "transfer_in", "amount": amount, "from": username})
+    save_db(db)
+    print(f"Transferred ${amount:.2f} to {recipient}. New balance: ${sender['balance']:.2f}")
+
+    
+
 
 def user_menu(username):
     while True:
         print(f"\n--- logged in as {username} ---")
         print("1. Check balance")
         print("2. Deposit")
-        print("3. Logout")
+        print("3. Withdraw")
+        print("4. Transfer")
+        print("5. Logout")
         choice = input("choose an option: ").strip()
         if choice == "1":
             show_balance(username)
         elif choice == "2":
             deposit(username)
         elif choice == "3":
+            withdraw(username)
+        elif choice == "4":
+            transfer(username)
+
+        elif choice == "5":
             print("logged out.")
             return
         else:
