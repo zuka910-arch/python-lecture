@@ -127,6 +127,22 @@ def transfer(username):
     print(f"Transferred ${amount:.2f} to {recipient}. New balance: ${sender['balance']:.2f}")
 
     
+def show_history(username):
+    db = load_db()
+    txs = db["users"][username]["transactions"]
+    if not txs:
+        print("NO transactions yet.")
+        return
+    print("\n--- Transactions History ---")
+    for t in txs:
+        line = f"[{t['at']}]  {t['type']:<13} ${t['amount']:.2f}"
+        if "to" in t:
+            line += f"-> {t['to']}"
+        if "from" in t:
+            line += f" <- {t["from"]}"
+        print(line)
+
+
 
 
 def user_menu(username):
@@ -136,7 +152,8 @@ def user_menu(username):
         print("2. Deposit")
         print("3. Withdraw")
         print("4. Transfer")
-        print("5. Logout")
+        print("5. transaction history")
+        print("6. Logout")
         choice = input("choose an option: ").strip()
         if choice == "1":
             show_balance(username)
@@ -146,8 +163,9 @@ def user_menu(username):
             withdraw(username)
         elif choice == "4":
             transfer(username)
-
         elif choice == "5":
+            show_history(username)
+        elif choice == "6":
             print("logged out.")
             return
         else:
