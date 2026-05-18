@@ -29,3 +29,6 @@ my_icecream = IcecreamStand("sweet ice", "icecream")
 my_icecream.describe_restaurant()
 
 my_icecream.show_flavors()
+
+
+class Admin()
