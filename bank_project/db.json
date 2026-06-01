@@ -2,7 +2,7 @@
   "users": {
     "bob": {
       "password": "bob123",
-      "balance": 350.0,
+      "balance": 1350.0,
       "transactions": [
         {
           "type": "deposit",
@@ -50,6 +50,12 @@
           "amount": 50.0,
           "to": "alice",
           "at": "2026-05-18T18:07:43"
+        },
+        {
+          "type": "transfer_in",
+          "amount": 1000.0,
+          "from": "slonika",
+          "at": "2026-05-21T12:07:20"
         }
       ]
     },
@@ -78,6 +84,23 @@
           "amount": 50.0,
           "from": "bob",
           "at": "2026-05-18T18:07:43"
+        }
+      ]
+    },
+    "slonika": {
+      "password": "slonika123",
+      "balance": 4000.0,
+      "transactions": [
+        {
+          "type": "deposit",
+          "amount": 5000.0,
+          "at": "2026-05-21T12:06:59"
+        },
+        {
+          "type": "transfer_out",
+          "amount": 1000.0,
+          "to": "bob",
+          "at": "2026-05-21T12:07:20"
         }
       ]
     }

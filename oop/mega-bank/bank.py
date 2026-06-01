@@ -139,13 +139,17 @@ class BankApp:
         while True:
             print("\n=== Mega Bank ===")
             print("1. Register")
-            print("2. Quit")
+            print("2. login")
+            print("3. quit")
             choice = input("choose an option: ").strip()
             if choice == "1":
                 #TODO:
                 self._register()
                 pass
             elif choice == "2":
+                self._login()
+
+            elif choice == "3":
                 print("Goodbye!")
                 return
             else:
