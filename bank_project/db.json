@@ -1,0 +1,108 @@
+{
+  "users": {
+    "bob": {
+      "password": "bob123",
+      "balance": 1350.0,
+      "transactions": [
+        {
+          "type": "deposit",
+          "amount": 250.0,
+          "at": "2026-04-30T17:49:05"
+        },
+        {
+          "type": "deposit",
+          "amount": 250.0,
+          "at": "2026-04-30T17:49:18"
+        },
+        {
+          "type": "deposit",
+          "amount": 100.0,
+          "at": "2026-04-30T17:51:22"
+        },
+        {
+          "type": "deposit",
+          "amount": 2.5,
+          "at": "2026-04-30T17:52:21"
+        },
+        {
+          "type": "withdraw",
+          "amount": 200.0,
+          "at": "2026-05-05T19:29:06"
+        },
+        {
+          "type": "withdraw",
+          "amount": 2.5,
+          "at": "2026-05-05T19:30:36"
+        },
+        {
+          "type": "transfer_out",
+          "amount": 250.0,
+          "to": "alice",
+          "at": "2026-05-06T09:56:16"
+        },
+        {
+          "type": "deposit",
+          "amount": 250.0,
+          "at": "2026-05-06T09:58:16"
+        },
+        {
+          "type": "transfer_out",
+          "amount": 50.0,
+          "to": "alice",
+          "at": "2026-05-18T18:07:43"
+        },
+        {
+          "type": "transfer_in",
+          "amount": 1000.0,
+          "from": "slonika",
+          "at": "2026-05-21T12:07:20"
+        }
+      ]
+    },
+    "alice": {
+      "password": "alice123",
+      "balance": 950.0,
+      "transactions": [
+        {
+          "type": "deposit",
+          "amount": 150.0,
+          "at": "2026-05-06T09:50:23"
+        },
+        {
+          "type": "deposit",
+          "amount": 500.0,
+          "at": "2026-05-06T09:50:31"
+        },
+        {
+          "type": "transfer_in",
+          "amount": 250.0,
+          "from": "bob",
+          "at": "2026-05-06T09:56:16"
+        },
+        {
+          "type": "transfer_in",
+          "amount": 50.0,
+          "from": "bob",
+          "at": "2026-05-18T18:07:43"
+        }
+      ]
+    },
+    "slonika": {
+      "password": "slonika123",
+      "balance": 4000.0,
+      "transactions": [
+        {
+          "type": "deposit",
+          "amount": 5000.0,
+          "at": "2026-05-21T12:06:59"
+        },
+        {
+          "type": "transfer_out",
+          "amount": 1000.0,
+          "to": "bob",
+          "at": "2026-05-21T12:07:20"
+        }
+      ]
+    }
+  }
+}
