@@ -1,3 +1,5 @@
+import json
+
 class HotelRoom:
     def __init__(self, room_number):
         self.room_number = room_number
@@ -21,7 +23,14 @@ class HotelRoom:
             print("Stato: Da rifare / Sbarazzo")
         print(f"info : {self.notes}")
 
-#HOTEL menu
+    def to_dict(self):
+        return {
+            "room_number": self.room_number,
+            "is_clean": self.is_clean,
+            "notes": self.notes
+        }
+#+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
 def get_num(prompt):
     while True:
         try:
@@ -37,14 +46,44 @@ def get_num(prompt):
             print("Inserisci solo numeri validi!")
             continue
 
-rooms_database = {}
+
+#+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+def save_data(database):
+    data_to_save = {}
+    for num , room_obj in database.items():
+        data_to_save[num] = room_obj.to_dict()
+    with open("hotel_data.json", "w") as file:
+        json.dump(data_to_save, file, indent=4)
+
+#====================================================================================================================================
+def load_data():
+    loaded_db = {}
+    try:
+        with open("hotel_data.json", "r") as file:
+            data_loaded = json.load(file)
+            for num, room_data in data_loaded.items():
+                real_num = int(num)
+                room = HotelRoom(room_data["room_number"])
+                room.is_clean = room_data["is_clean"]
+                room.notes = room_data["notes"]
+                loaded_db[real_num] = room
+        print("Dati caricati con successo!\n")
+        return loaded_db
+    except FileNotFoundError:
+        print("Nessun dato salvato trovato. Inizio con database vuoto.\n")
+        return {}
+    
+#+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+#HOTEL menu
+
+rooms_database  = load_data()
 while True:
     print("--- 🛎️ Pannello di Controllo Camere --- \n" \
             "1. Check-in (Aggiungi camera) \n" \
             "2. Check-out (Richiedi sbarazzo) \n" \
             "3. Aggiungi nota (კომენტარის დამატება) \n" \
             "4. Mostra info camera (ინფორმაციის ნახვა) \n" \
-            "5. Esci dal programma \n")
+            "5. Esci e Salva (გასვლა და შენახვა) \n")
     choose = input("Scegli un'opzione (1/2/3/4/5): ")
     if choose == "1":
             num = get_num("Numero di camera: ")
@@ -71,9 +110,8 @@ while True:
             print("camera non trovata!")
 
     elif choose == "5":
+        save_data(rooms_database)
         print("arrivederci")
         break
     else:
         print("choose error")
-
-
