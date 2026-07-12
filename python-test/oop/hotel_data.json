@@ -1,9 +1,49 @@
 {
     "23": {
         "room_number": 23,
+        "is_clean": true,
+        "notes": [
+            {
+                "informazione": "sporcp",
+                "is_done": true,
+                "reply": ""
+            },
+            {
+                "informazione": "veloce!",
+                "is_done": true,
+                "reply": ""
+            }
+        ],
+        "Stato": true
+    },
+    "1": {
+        "room_number": 1,
+        "is_clean": false,
+        "notes": [],
+        "Stato": false
+    },
+    "22": {
+        "room_number": 22,
+        "is_clean": false,
+        "notes": [],
+        "Stato": false
+    },
+    "12": {
+        "room_number": 12,
+        "is_clean": true,
+        "notes": [],
+        "Stato": true
+    },
+    "21": {
+        "room_number": 21,
         "is_clean": false,
         "notes": [
-            "deve pulire terra"
-        ]
+            {
+                "informazione": "\u10d2\u10d0\u10e1\u10d0\u10e1\u10ec\u10dd\u10e0\u10d4\u10d4\u10d1\u10d4\u10da\u10d8\u10d0 \u10e0\u10d0\u10e6\u10d0\u10ea\u10d4\u10d4\u10d4\u10d1\u10d8 \u10d0\u10e5",
+                "is_done": false,
+                "reply": ""
+            }
+        ],
+        "Stato": false
     }
 }
