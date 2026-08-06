@@ -82,7 +82,7 @@ def get_num(prompt):
     while True:
         try:
             num = int(input(prompt))
-            if num  <= 0 or num > 125 :
+            if num  < 0 or num > 125 :
                 print("Per favore, inserisci un numero di camera valido (1-125)!") 
                 continue
 
@@ -139,6 +139,9 @@ while True:
         if num in rooms_database:
             if rooms_database[num].is_occupied:
                 print(f"⚠️ Attenzione! Impossibile fare il check-in. La camera {num} è già occupata!")
+            elif not rooms_database[num].is_clean:
+                print(f"🧹 Impossibile! La camera {num} è libera, ma deve essere pulita prima (Sbarazzo)!")
+
             else:
                 rooms_database[num].check_in()
         else:
@@ -160,8 +163,9 @@ while True:
         else:
             for num, room_obj in rooms_database.items():
                 stato = "Occupata" if room_obj.is_occupied else "Libera"
+                pulizia = "pulita" if room_obj.is_clean else "sbarazzo"
                 tickets = len(room_obj.notes)
-                print(f"🚪 Camera {num} | Stato: {stato} | Ticket aperti: {tickets}")
+                print(f"🚪 Camera {num} | Stato: {stato} | Pulizia: {pulizia} | Ticket aperti: {tickets}")
         print("-----------------------------\n")
 
         room = get_num("Scegli il numero di camera per i dettagli (o 0 per uscire): ")
@@ -176,9 +180,10 @@ while True:
                 print("--- ⚙️ Azioni Camera ---")
                 print("1. Aggiungi Ticket (ახალი პრობლემის დამატება)")
                 print("2. Segna ticket come Fatto (სტატუსის შეცვლა)")
-                print("3. Torna al menu principale (უკან დაბრუნება)")
+                print("3. segna come pulita")
+                print("4. Torna al menu principale (უკან დაბრუნება)")
                 
-                sub_choose = input("Scegli (1/2/3): ")
+                sub_choose = input("Scegli (1/2/3/4): ")
                 
                 if sub_choose == "1":
                     note_text = input("Inserisci il dettaglio del ticket: ")
@@ -187,6 +192,12 @@ while True:
                     t_num = get_num("Numero del ticket: ")
                     rooms_database[room].complete_ticket(t_num)
                 elif sub_choose == "3":
+                    rooms_database[room].is_clean = True
+                    print(f"✨ La camera {room} è ora pulita!")
+                    del rooms_database[room]
+                    print(f"🗑️ La camera {room} è stata rimossa dal database (Pronta per check-in).")
+                    break
+                elif sub_choose == "4":
                     break
                 else:
                     print("Scelta non valida!")
